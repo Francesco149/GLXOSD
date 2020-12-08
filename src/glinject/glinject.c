@@ -421,6 +421,12 @@ char* glinject_join_path(const char* path, const char* suffix) {
 	return new_path;
 }
 
+static int onpanic(lua_State *L) {
+  luaL_traceback(L, L, "LUA PANIC: ", 1);
+  fprintf(stderr, "%s\n", lua_tolstring(L, -1, 0));
+  lua_settop(L, -2);
+}
+
 /*
  * This method is called at library initialisation.
  */
@@ -438,6 +444,7 @@ void glinject_construct() {
 	}
 	// Open Lua libraries
 	luaL_openlibs(L);
+	lua_atpanic(L, onpanic); // Panic handler
 
 	// Find out the root of the GLXOSD script directory
 	const char* path = getenv("GLXOSD_SCRIPTS_ROOT");
