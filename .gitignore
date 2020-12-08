@@ -3,6 +3,7 @@
 /luajit-*
 /src/freetype-gl-glxosd/src/
 /lib
+/glxosd-aarch64-git
 
 #Thanks to https://github.com/github/gitignore/
 
