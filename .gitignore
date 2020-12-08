@@ -1,3 +1,9 @@
+/freetype-*
+/glew-*
+/luajit-*
+/src/freetype-gl-glxosd/src/
+/lib
+
 #Thanks to https://github.com/github/gitignore/
 
 # Compiled Object files
