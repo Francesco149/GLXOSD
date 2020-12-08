@@ -16,9 +16,9 @@ local function get_kernel_architecture()
 	local utsname = ffi.new("struct utsname[1]")
 	ffi.C.uname(utsname)
 	local architecture = ffi.string(utsname[0].machine)
-	if architecture == "x86_64" then
+	if architecture == "x86_64" or architecture == "aarch64" then
 		return "x64"
-	elseif architecture:find("i[3-9]86") then
+	elseif architecture:find("i[3-9]86") or architecture:find("armv") then
 		return "x86"
 	else
 		error("Unknown system architecture! GLXOSD is not supported.")
