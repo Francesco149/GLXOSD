@@ -21,6 +21,10 @@
 		typedef ret (*glinject_##name##_type) param;\
 		glinject_##name##_type glinject_real_##name;
 
+#define GLINJECT_DEFINE_REAL_SYMBOL_EXT(name, ret, param)\
+		typedef ret (*glinject_##name##_type) param;\
+		extern glinject_##name##_type glinject_real_##name;
+
 #define GLINJECT_DEFINE_AND_OVERLOAD(name, ret, param)\
 		GLINJECT_DEFINE_REAL_SYMBOL(name, ret, param);\
 		ret name param
@@ -41,11 +45,11 @@ typedef __GLXextFuncPtr (*gl_function_provider_type)(const GLubyte* name);
 /*
  * Real symbol definitions
  */
-GLINJECT_DEFINE_REAL_SYMBOL(dlopen, void*, (const char *, int));
+GLINJECT_DEFINE_REAL_SYMBOL_EXT(dlopen, void*, (const char *, int));
 
-GLINJECT_DEFINE_REAL_SYMBOL(dlsym, void*, (const void *, const char *));
+GLINJECT_DEFINE_REAL_SYMBOL_EXT(dlsym, void*, (const void *, const char *));
 
-GLINJECT_DEFINE_REAL_SYMBOL(dlvsym, void*,
+GLINJECT_DEFINE_REAL_SYMBOL_EXT(dlvsym, void*,
 		(const void *, const char *, const char *));
 
 /*

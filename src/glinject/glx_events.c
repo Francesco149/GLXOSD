@@ -21,6 +21,10 @@ void glXDestroy##name (Display *dpy, type drawable) { \
 	glinject_real_glXDestroy##name(dpy, drawable); \
 }
 
+
+GLINJECT_DEFINE_REAL_SYMBOL(glXGetProcAddressARB, __GLXextFuncPtr, (const GLubyte*));
+GLINJECT_DEFINE_REAL_SYMBOL(glXGetProcAddress, __GLXextFuncPtr, (const GLubyte*));
+
 DEFINE_GLX_DESTRUCTION_HANDLER(GLXPixmap, GLXPixmap)
 DEFINE_GLX_DESTRUCTION_HANDLER(Pixmap, GLXPixmap)
 DEFINE_GLX_DESTRUCTION_HANDLER(Pbuffer, GLXPbuffer)

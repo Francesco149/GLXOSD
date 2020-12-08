@@ -23,6 +23,13 @@
 #include <stdbool.h>
 #include <pthread.h>
 
+GLINJECT_DEFINE_REAL_SYMBOL(dlopen, void*, (const char *, int));
+
+GLINJECT_DEFINE_REAL_SYMBOL(dlsym, void*, (const void *, const char *));
+
+GLINJECT_DEFINE_REAL_SYMBOL(dlvsym, void*,
+		(const void *, const char *, const char *));
+
 // Mutex used for synchronising Lua API calls.
 pthread_mutex_t glinject_mutex = PTHREAD_MUTEX_INITIALIZER;
 

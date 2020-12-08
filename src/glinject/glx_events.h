@@ -12,9 +12,9 @@
 #include "glinject.h"
 typedef __GLXextFuncPtr (*gl_function_provider_type)(const GLubyte* name);
 
-GLINJECT_DEFINE_REAL_SYMBOL(glXGetProcAddressARB, __GLXextFuncPtr, (const GLubyte*));
+GLINJECT_DEFINE_REAL_SYMBOL_EXT(glXGetProcAddressARB, __GLXextFuncPtr, (const GLubyte*));
 
-GLINJECT_DEFINE_REAL_SYMBOL(glXGetProcAddress, __GLXextFuncPtr, (const GLubyte*));
+GLINJECT_DEFINE_REAL_SYMBOL_EXT(glXGetProcAddress, __GLXextFuncPtr, (const GLubyte*));
 
 void glinject_load_glx_event_real_symbols(const char* path);
 

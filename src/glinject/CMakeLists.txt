@@ -1,7 +1,7 @@
 include(GNUInstallDirs)
 add_library(glinject SHARED glinject.c glx_events.c x_events.c)
 add_dependencies(glinject elfhacks)
-target_link_libraries(glinject dl rt luajit elfhacks m)
+target_link_libraries(glinject dl rt luajit elfhacks m X11)
 set_target_properties(glinject PROPERTIES LIBRARY_OUTPUT_NAME glxosd-glinject)
 set_target_properties(glinject PROPERTIES VERSION ${GLXOSD_VERSION_STRING}
                                           SOVERSION ${GLXOSD_VERSION_MAJOR})
