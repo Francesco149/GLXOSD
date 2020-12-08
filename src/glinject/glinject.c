@@ -331,7 +331,9 @@ void glinject_assert_symbol_loaded(void* symbol, const char* name) {
  * Links GLX and X
  */
 void glinject_link_glx_and_xlib() {
+	fprintf(stderr, "CURRENT_PATH_CONFIG\n");
 	lua_getglobal(L, "CURRENT_PATH_CONFIG");
+	fprintf(stderr, "libGL\n");
 	lua_getfield(L, -1, "libGL"); // Read CURRENT_PATH_CONFIG.libGL
 	if (!lua_isstring(L, -1)) {
 		fprintf(stderr, "Couldn't determine the location of libGL "
@@ -339,7 +341,9 @@ void glinject_link_glx_and_xlib() {
 		exit(EXIT_FAILURE);
 	}
 	const char* lib_gl_path = strdup(lua_tostring(L, -1));
+	fprintf(stderr, "lib_gl_path: %s\n", lib_gl_path);
 	lua_pop(L, 1);
+	fprintf(stderr, "libX11\n");
 	lua_getfield(L, -1, "libX11"); // Read CURRENT_PATH_CONFIG.libX11
 	if (!lua_isstring(L, -1)) {
 		fprintf(stderr, "Couldn't determine the location of libX11 "
@@ -347,10 +351,14 @@ void glinject_link_glx_and_xlib() {
 		exit(EXIT_FAILURE);
 	}
 	const char* lib_x11_path = strdup(lua_tostring(L, -1));
+	fprintf(stderr, "lib_x11_path: %s\n", lib_x11_path);
 	lua_pop(L, 2);
 
+	fprintf(stderr, "glinject_load_glx_event_real_symbols\n");
 	glinject_load_glx_event_real_symbols(lib_gl_path);
+	fprintf(stderr, "glinject_load_x_event_real_symbols\n");
 	glinject_load_x_event_real_symbols(lib_x11_path);
+	fprintf(stderr, "link_glx done\n");
 }
 
 /*
@@ -461,13 +469,16 @@ void glinject_construct() {
 	char* main_path = glinject_join_path(path, main_suffix);
 
 	// Run the bootstrap script.
+	fprintf(stderr, "running bootstrap\n");
 	glinject_run_file(bootstrap_path);
 
 	// Link GLX and X11 because we now know the paths to libGL
 	// and libX11 thanks to the bootstrap script.
+	fprintf(stderr, "glinject_link_glx_and_xlib\n");
 	glinject_link_glx_and_xlib();
 
 	// Finally, run the main script. It can now use GLX and X11.
+	fprintf(stderr, "running main\n");
 	glinject_run_file(main_path);
 
 	free(bootstrap_path);
