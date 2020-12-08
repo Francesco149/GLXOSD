@@ -38,11 +38,12 @@ extern "C" {
 
 #define __PUBLIC __attribute__ ((visibility ("default")))
 
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__aarch64__)
 # define __elf64
-#endif
-#ifdef __i386__
+#elif defined(__i386__) || defined(__arm__)
 # define __elf32
+#else
+#error "could not detect architecture"
 #endif
 
 #ifdef __elf64
