@@ -6,12 +6,12 @@ set(INSTALL_COMMAND
 		CFLAGS=-fPIC
 		BUILDMODE=static
 		Q=
-		PREFIX=${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta3
+		PREFIX=${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-351bb43
 		install)
 
 ExternalProject_Add(project_luajit
-	PREFIX ${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta3
-	URL ${PROJECT_SOURCE_DIR}/third-party/LuaJIT-2.1.0-beta3.tar.gz
+	PREFIX ${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-351bb43
+	URL ${PROJECT_SOURCE_DIR}/third-party/LuaJIT-2.1.0-351bb43.tar.gz
 	CONFIGURE_COMMAND ""
 	BUILD_IN_SOURCE 1
 	BUILD_COMMAND ""
