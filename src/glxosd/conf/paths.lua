@@ -43,4 +43,9 @@ PATH_CONFIG = {
 	}
 }
 
+PATH_CONFIG.x64.arm64 = PATH_CONFIG.x64.x64
+PATH_CONFIG.x64.arm = PATH_CONFIG.x64.x86
+PATH_CONFIG.x86.arm = PATH_CONFIG.x86.x86
+print("arch: ", arch.kernel_architecture, ffi.arch)
+
 CURRENT_PATH_CONFIG = PATH_CONFIG[arch.kernel_architecture][ffi.arch]
