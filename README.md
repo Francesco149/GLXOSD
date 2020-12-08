@@ -1,3 +1,7 @@
+this is my fork of GLXOSD which adds support for aarch64 (tested on rpi3) and arm (not tested)
+
+you can also find it on the aur, just install `glxosd-aarch64-git` with your favorite aur helper
+
 GLXOSD
 =============
 **WARNING!:** Unfortunately, GLXOSD has been discontinued. For more information, please see [#109](https://github.com/nickguletskii/GLXOSD/issues/109)
