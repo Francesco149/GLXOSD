@@ -422,9 +422,9 @@ char* glinject_join_path(const char* path, const char* suffix) {
 }
 
 static int onpanic(lua_State *L) {
-  luaL_traceback(L, L, "LUA PANIC: ", 1);
-  fprintf(stderr, "%s\n", lua_tolstring(L, -1, 0));
-  lua_settop(L, -2);
+  char* errstr = lua_tostring(L, -1);
+  luaL_traceback(L, L, 0, 1);
+  fprintf(stderr, "LUA PANIC: %s\n%s\n", errstr, lua_tostring(L, -1));
 }
 
 /*
